@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clara Lavigne - Préparatrice de Commande d'Excellence | Acolyt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #e3e3e3;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #f0a500, #e94560, #f0a500);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-gradient-flow 5s linear infinite;
+        }
+        @keyframes text-gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero-bg {
+            background-color: #0d1117;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(233, 69, 96, 0.1), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(240, 165, 0, 0.1), transparent 30%);
+        }
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -20.5px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #0d1117;
+            border: 3px solid #f0a500;
+            z-index: 10;
+        }
+        .timeline-line {
+            position: absolute;
+            top: 20px;
+            left: -1px;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #f0a500, #e94560);
+            z-index: 5;
+        }
+        .testimonial-slide {
+            min-width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .gallery-item .overlay {
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+            transform: scale(0.9);
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #f0a500;
+            transition: width .3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+    <meta name="description" content="yop">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-gray-900/50 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-display font-bold text-white">Clara Lavigne</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-gray-300 hover:text-white nav-link">À Propos</a>
+                <a href="#skills" class="text-gray-300 hover:text-white nav-link">Compétences</a>
+                <a href="#process" class="text-gray-300 hover:text-white nav-link">Processus</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-white nav-link">Portfolio</a>
+                <a href="#contact" class="bg-gradient-to-r from-yellow-500 to-pink-600 hover:from-yellow-600 hover:to-pink-700 text-white font-bold py-2 px-5 rounded-full transition-all duration-300 transform hover:scale-105">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
+            <a href="#about" class="block text-center py-3 px-4 text-gray-300 hover:bg-gray-800">À Propos</a>
+            <a href="#skills" class="block text-center py-3 px-4 text-gray-300 hover:bg-gray-800">Compétences</a>
+            <a href="#process" class="block text-center py-3 px-4 text-gray-300 hover:bg-gray-800">Processus</a>
+            <a href="#portfolio" class="block text-center py-3 px-4 text-gray-300 hover:bg-gray-800">Portfolio</a>
+            <a href="#contact" class="block text-center py-4 px-4 text-white bg-gradient-to-r from-yellow-500 to-pink-600">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="h-screen flex items-center justify-center text-center hero-bg relative overflow-hidden">
+            <div class="absolute inset-0 z-0" id="hero-interactive-bg">
+                <!-- JS will populate this -->
+            </div>
+            <div class="z-10 px-4">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black font-display gradient-text mb-4">
+                    Clara Lavigne
+                </h1>
+                <p class="text-xl md:text-2xl lg:text-3xl font-light text-gray-300 mb-2">Préparatrice de Commande d'Excellence</p>
+                <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                    Au service de la logistique de luxe chez <span class="font-bold text-white">Acolyt</span>, où chaque colis est une promesse de perfection.
+                </p>
+                <a href="#contact" class="inline-block bg-gradient-to-r from-yellow-500 to-pink-600 text-white font-bold text-lg py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-pink-600/20 hover:shadow-xl hover:shadow-yellow-500/30">
+                    Discutons de votre projet <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32 bg-gray-900 section-reveal">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-5 gap-12 items-center">
+                    <div class="md:col-span-2">
+                        <div class="relative group">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-yellow-500 to-pink-600 rounded-lg blur-md opacity-50 group-hover:opacity-80 transition duration-500"></div>
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w2MjU1MDF8MHwxfHNlYXJjaHwxM3x8Z2lybHxlbnwwfDF8fHwxNzUyNjUzODU1fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="Portrait de Clara Lavigne" class="relative rounded-lg shadow-2xl w-full">
+                        </div>
+                    </div>
+                    <div class="md:col-span-3">
+                        <h2 class="text-4xl md:text-5xl font-bold font-display mb-6">
+                            L'art de la <span class="gradient-text">précision</span>.
+                        </h2>
+                        <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+                            Depuis plus de 5 ans chez Acolyt, je transforme la logistique en une expérience de luxe. Ma mission va au-delà de la simple préparation de commande : je suis la gardienne de la qualité et l'ambassadrice de l'excellence que nos clients attendent.
+                        </p>
+                        <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                            Chaque article de haute couture, chaque pièce de maroquinerie ou d'horlogerie passe entre mes mains avec le plus grand soin. Ma rigueur et ma passion pour les produits d'exception garantissent une satisfaction client irréprochable et renforcent la réputation d'Acolyt.
+                        </p>
+                        <div class="flex space-x-6">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-award text-yellow-400 text-2xl"></i>
+                                <span class="font-semibold">5+ ans d'expérience</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-box-open text-pink-500 text-2xl"></i>
+                                <span class="font-semibold">100k+ colis de luxe traités</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 md:py-32 section-reveal">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold font-display mb-4">Mes Compétences Clés</h2>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-16">L'efficacité au service du prestige.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 hover:border-yellow-500 transition-all duration-300 transform hover:-translate-y-2">
+                        <i class="fas fa-crosshairs text-4xl gradient-text mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Précision Chirurgicale</h3>
+                        <p class="text-gray-400">Vérification méticuleuse de chaque article pour une conformité absolue avec la commande.</p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 hover:border-pink-500 transition-all duration-300 transform hover:-translate-y-2">
+                        <i class="fas fa-shipping-fast text-4xl gradient-text mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Rapidité d'Exécution</h3>
+                        <p class="text-gray-400">Optimisation des flux de travail pour garantir des délais de préparation records sans compromis.</p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 hover:border-yellow-500 transition-all duration-300 transform hover:-translate-y-2">
+                        <i class="fas fa-gem text-4xl gradient-text mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Connaissance Produit</h3>
+                        <p class="text-gray-400">Expertise approfondie des spécificités des produits de luxe (matières, entretien, authenticité).</p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 hover:border-pink-500 transition-all duration-300 transform hover:-translate-y-2">
+                        <i class="fas fa-box-tissue text-4xl gradient-text mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Emballage de Prestige</h3>
+                        <p class="text-gray-400">Maîtrise des techniques d'emballage haut de gamme pour une expérience unboxing inoubliable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="py-20 md:py-32 bg-gray-900 section-reveal">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold font-display text-center mb-16">Mon Processus en <span class="gradient-text">5 Étapes</span></h2>
+                <div class="relative max-w-2xl mx-auto">
+                    <div class="timeline-line"></div>
+                    <div class="space-y-16">
+                        <div class="relative pl-12 timeline-item">
+                            <h3 class="text-2xl font-bold font-display text-yellow-400 mb-2">1. Réception &amp; Analyse</h3>
+                            <p class="text-gray-300">Prise en charge de la commande et analyse détaillée des exigences spécifiques pour garantir une préparation sans faille.</p>
+                        </div>
+                        <div class="relative pl-12 timeline-item">
+                            <h3 class="text-2xl font-bold font-display text-yellow-400 mb-2">2. Picking Stratégique</h3>
+                            <p class="text-gray-300">Collecte optimisée des articles dans l'entrepôt en suivant un parcours logique pour maximiser l'efficacité.</p>
+                        </div>
+                        <div class="relative pl-12 timeline-item">
+                            <h3 class="text-2xl font-bold font-display text-pink-500 mb-2">3. Contrôle Qualité Rigoureux</h3>
+                            <p class="text-gray-300">Inspection visuelle et tactile de chaque produit. Je m'assure que la qualité est irréprochable avant l'emballage.</p>
+                        </div>
+                        <div class="relative pl-12 timeline-item">
+                            <h3 class="text-2xl font-bold font-display text-pink-500 mb-2">4. Emballage Signature</h3>
+                            <p class="text-gray-300">Mise en boîte selon les standards de luxe : papier de soie, rubans, certificats et mot personnalisé. L'art de la présentation.</p>
+                        </div>
+                        <div class="relative pl-12 timeline-item">
+                            <h3 class="text-2xl font-bold font-display text-yellow-400 mb-2">5. Expédition Sécurisée</h3>
+                            <p class="text-gray-300">Vérification finale des documents d'expédition et remise au transporteur, avec un suivi constant jusqu'à la livraison.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 md:py-32 section-reveal">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold font-display text-center mb-16">Ce qu'ils disent de moi</h2>
+                <div class="relative max-w-3xl mx-auto overflow-hidden">
+                    <div id="testimonial-slider" class="flex">
+                        <div class="testimonial-slide flex-shrink-0 w-full">
+                            <div class="bg-gray-900 p-8 rounded-lg text-center">
+                                <i class="fas fa-quote-left text-3xl text-yellow-500 mb-4"></i>
+                                <p class="text-lg italic text-gray-300 mb-6">"La rigueur de Clara est un pilier pour Acolyt. Sa capacité à maintenir un niveau de qualité exceptionnel sous pression est tout simplement remarquable. Elle est un modèle pour toute l'équipe."</p>
+                                <p class="font-bold text-white">Julien Dubois</p>
+                                <p class="text-sm text-gray-400">Directeur des Opérations, Acolyt</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-slide flex-shrink-0 w-full">
+                            <div class="bg-gray-900 p-8 rounded-lg text-center">
+                                <i class="fas fa-quote-left text-3xl text-pink-500 mb-4"></i>
+                                <p class="text-lg italic text-gray-300 mb-6">"Avec Clara, je sais que chaque commande est parfaite. Le taux de retour pour erreur de préparation est proche de zéro sur ses dossiers. C'est une tranquillité d'esprit inestimable."</p>
+                                <p class="font-bold text-white">Sophie Martin</p>
+                                <p class="text-sm text-gray-400">Responsable Service Client, Acolyt</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-slide flex-shrink-0 w-full">
+                           <div class="bg-gray-900 p-8 rounded-lg text-center">
+                                <i class="fas fa-quote-left text-3xl text-yellow-500 mb-4"></i>
+                                <p class="text-lg italic text-gray-300 mb-6">"Elle ne se contente pas de préparer des commandes, elle sublime l'expérience client. Son souci du détail dans l'emballage est souvent mentionné dans les retours positifs de nos clients."</p>
+                                <p class="font-bold text-white">Marc-Antoine Lemoine</p>
+                                <p class="text-sm text-gray-400">Directeur Marketing, Acolyt</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 flex space-x-2 p-4">
+                        <button class="testimonial-dot active bg-yellow-500 w-3 h-3 rounded-full"></button>
+                        <button class="testimonial-dot bg-gray-600 w-3 h-3 rounded-full"></button>
+                        <button class="testimonial-dot bg-gray-600 w-3 h-3 rounded-full"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-20 md:py-32 bg-gray-900 section-reveal">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold font-display text-center mb-4">Portfolio d'Excellence</h2>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto text-center mb-16">Quelques exemples de préparations de prestige.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="gallery-item relative rounded-lg overflow-hidden shadow-lg h-80">
+                        <img src="https://placehold.co/600x400/e94560/ffffff?text=Haute+Couture" alt="Emballage de haute couture" class="w-full h-full object-cover transition-transform duration-400">
+                        <div class="overlay absolute inset-0 bg-black/70 flex items-center justify-center p-4">
+                            <h3 class="text-2xl font-bold text-white">Haute Couture</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item relative rounded-lg overflow-hidden shadow-lg h-80">
+                        <img src="https://placehold.co/600x400/f0a500/ffffff?text=Maroquinerie" alt="Emballage de maroquinerie" class="w-full h-full object-cover transition-transform duration-400">
+                        <div class="overlay absolute inset-0 bg-black/70 flex items-center justify-center p-4">
+                            <h3 class="text-2xl font-bold text-white">Maroquinerie de Luxe</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item relative rounded-lg overflow-hidden shadow-lg h-80">
+                        <img src="https://placehold.co/600x400/e94560/ffffff?text=Horlogerie" alt="Emballage d'horlogerie" class="w-full h-full object-cover transition-transform duration-400">
+                        <div class="overlay absolute inset-0 bg-black/70 flex items-center justify-center p-4">
+                            <h3 class="text-2xl font-bold text-white">Horlogerie Suisse</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item relative rounded-lg overflow-hidden shadow-lg h-80">
+                        <img src="https://placehold.co/600x400/f0a500/ffffff?text=Joaillerie" alt="Emballage de joaillerie" class="w-full h-full object-cover transition-transform duration-400">
+                        <div class="overlay absolute inset-0 bg-black/70 flex items-center justify-center p-4">
+                            <h3 class="text-2xl font-bold text-white">Joaillerie Fine</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item relative rounded-lg overflow-hidden shadow-lg h-80">
+                        <img src="https://placehold.co/600x400/e94560/ffffff?text=Souliers" alt="Emballage de souliers" class="w-full h-full object-cover transition-transform duration-400">
+                        <div class="overlay absolute inset-0 bg-black/70 flex items-center justify-center p-4">
+                            <h3 class="text-2xl font-bold text-white">Souliers d'Exception</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item relative rounded-lg overflow-hidden shadow-lg h-80">
+                        <img src="https://placehold.co/600x400/f0a500/ffffff?text=Parfumerie" alt="Emballage de parfumerie" class="w-full h-full object-cover transition-transform duration-400">
+                        <div class="overlay absolute inset-0 bg-black/70 flex items-center justify-center p-4">
+                            <h3 class="text-2xl font-bold text-white">Parfumerie Rare</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 section-reveal">
+    <div class="container mx-auto px-6 max-w-2xl text-center">
+        <h2 class="text-4xl md:text-5xl font-bold font-display mb-4">Contactez-moi</h2>
+        <p class="text-lg text-gray-400 mb-12">Pour toute question ou opportunité professionnelle, n'hésitez pas à me laisser un message.</p>
+        
+        <!--?php
+        $message = '';
+        $messageClass = '';
+        
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = htmlspecialchars(trim($_POST['name']));
+            $email = htmlspecialchars(trim($_POST['email']));
+            $userMessage = htmlspecialchars(trim($_POST['message']));
+            
+            if (!empty($name) && !empty($email) && !empty($userMessage)) {
+                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $to = "louis.scarfone@gmail.com";
+                    $subject = "Nouveau message de contact - " . $name;
+                    $body = "Nom: " . $name . "\n";
+                    $body .= "Email: " . $email . "\n\n";
+                    $body .= "Message:\n" . $userMessage;
+                    
+                    $headers = "From: " . $email . "\r\n";
+                    $headers .= "Reply-To: " . $email . "\r\n";
+                    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+                    
+                    if (mail($to, $subject, $body, $headers)) {
+                        $message = "Votre message a été envoyé avec succès !";
+                        $messageClass = "text-green-400 bg-green-900/20 border border-green-700";
+                    } else {
+                        $message = "Erreur lors de l'envoi du message. Veuillez réessayer.";
+                        $messageClass = "text-red-400 bg-red-900/20 border border-red-700";
+                    }
+                } else {
+                    $message = "Veuillez entrer une adresse email valide.";
+                    $messageClass = "text-red-400 bg-red-900/20 border border-red-700";
+                }
+            } else {
+                $message = "Veuillez remplir tous les champs.";
+                $messageClass = "text-red-400 bg-red-900/20 border border-red-700";
+            }
+        }
+        ?-->
+        
+        <!--?php if (!empty($message)): ?-->
+            <div class="mb-6 p-4 rounded-lg &lt;?php echo $messageClass; ?&gt;">
+                <!--?php echo $message; ?-->
+            </div>
+        <!--?php endif; ?-->
+        
+        <form action="#contact" method="POST">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <input type="text" name="name" placeholder="Votre nom" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required="">
+                <input type="email" name="email" placeholder="Votre email" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required="">
+            </div>
+            <textarea name="message" placeholder="Votre message" rows="6" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white mb-6 focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all" required=""></textarea>
+            <button type="submit" class="w-full md:w-auto bg-gradient-to-r from-yellow-500 to-pink-600 text-white font-bold text-lg py-4 px-12 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-pink-600/20 hover:shadow-xl hover:shadow-yellow-500/30">
+                Envoyer le Message
+            </button>
+        </form>
+    </div>
+</section>
+    </main>
+
+    <footer class="bg-gray-900 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="mb-4">
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300 text-2xl mx-3">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:clara.lavigne.pro@example.com" class="text-gray-400 hover:text-pink-500 transition-colors duration-300 text-2xl mx-3">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <p>© 2025 Clara Lavigne. Tous droits réservés.</p>
+            <p class="text-sm mt-2">Conçu avec passion et précision.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-gray-900');
+                    header.classList.remove('bg-gray-900/50');
+                } else {
+                    header.classList.remove('bg-gray-900');
+                    header.classList.add('bg-gray-900/50');
+                }
+            });
+
+            // Section reveal on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.section-reveal').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Testimonial Slider
+            const slider = document.getElementById('testimonial-slider');
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            let currentIndex = 0;
+            const slideCount = slides.length;
+
+            function updateSlider(index) {
+                slider.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('bg-yellow-500', i === index);
+                    dot.classList.toggle('bg-gray-600', i !== index);
+                });
+                currentIndex = index;
+            }
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    updateSlider(i);
+                });
+            });
+
+            setInterval(() => {
+                let nextIndex = (currentIndex + 1) % slideCount;
+                updateSlider(nextIndex);
+            }, 5000);
+
+            // Hero interactive background (simple version)
+            const heroBg = document.getElementById('hero-interactive-bg');
+            document.getElementById('hero').addEventListener('mousemove', (e) => {
+                const { clientX, clientY, currentTarget } = e;
+                const { offsetWidth, offsetHeight } = currentTarget;
+                const xPos = (clientX / offsetWidth - 0.5) * 40;
+                const yPos = (clientY / offsetHeight - 0.5) * 40;
+
+                // This is a simple effect for demonstration. A more complex one would involve creating and moving elements.
+                // For now, we can apply a subtle gradient shift or similar effect.
+                // This part is kept simple to avoid performance issues on all devices.
+            });
+        });
+    </script>
+</body>
+</html>
