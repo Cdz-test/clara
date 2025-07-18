@@ -331,53 +331,7 @@
     <div class="container mx-auto px-6 max-w-2xl text-center">
         <h2 class="text-4xl md:text-5xl font-bold font-display mb-4">Contactez-moi</h2>
         <p class="text-lg text-gray-400 mb-12">Pour toute question ou opportunité professionnelle, n'hésitez pas à me laisser un message.</p>
-        
-        <!--?php
-        $message = '';
-        $messageClass = '';
-        
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $name = htmlspecialchars(trim($_POST['name']));
-            $email = htmlspecialchars(trim($_POST['email']));
-            $userMessage = htmlspecialchars(trim($_POST['message']));
-            
-            if (!empty($name) && !empty($email) && !empty($userMessage)) {
-                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $to = "louis.scarfone@gmail.com";
-                    $subject = "Nouveau message de contact - " . $name;
-                    $body = "Nom: " . $name . "\n";
-                    $body .= "Email: " . $email . "\n\n";
-                    $body .= "Message:\n" . $userMessage;
-                    
-                    $headers = "From: " . $email . "\r\n";
-                    $headers .= "Reply-To: " . $email . "\r\n";
-                    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-                    
-                    if (mail($to, $subject, $body, $headers)) {
-                        $message = "Votre message a été envoyé avec succès !";
-                        $messageClass = "text-green-400 bg-green-900/20 border border-green-700";
-                    } else {
-                        $message = "Erreur lors de l'envoi du message. Veuillez réessayer.";
-                        $messageClass = "text-red-400 bg-red-900/20 border border-red-700";
-                    }
-                } else {
-                    $message = "Veuillez entrer une adresse email valide.";
-                    $messageClass = "text-red-400 bg-red-900/20 border border-red-700";
-                }
-            } else {
-                $message = "Veuillez remplir tous les champs.";
-                $messageClass = "text-red-400 bg-red-900/20 border border-red-700";
-            }
-        }
-        ?-->
-        
-        <!--?php if (!empty($message)): ?-->
-            <div class="mb-6 p-4 rounded-lg &lt;?php echo $messageClass; ?&gt;">
-                <!--?php echo $message; ?-->
-            </div>
-        <!--?php endif; ?-->
-        
-        <form action="#contact" method="POST">
+        <form action="send-mail.php" method="POST">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <input type="text" name="name" placeholder="Votre nom" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required="">
                 <input type="email" name="email" placeholder="Votre email" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required="">
@@ -388,6 +342,59 @@
             </button>
         </form>
     </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            const phpCode = `<?php
+$to = 'louis.scarfone@gmail.com';
+$subject = 'Nouveau message de contact - ' . '${name}';
+
+$headers = array();
+$headers[] = 'From: ' . '${email}';
+$headers[] = 'MIME-Version: 1.0';
+$headers[] = 'Content-type: text/html; charset=UTF-8';
+
+$message = '
+<html>
+<head>
+    <title>Nouveau message de contact</title>
+</head>
+<body>
+    <h2>Nouveau message de contact</h2>
+    <p><strong>Nom:</strong> ${name}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Message:</strong></p>
+    <p>${message}</p>
+</body>
+</html>
+';
+
+$result = mail($to, $subject, $message, implode("\\r\\n", $headers));
+
+if ($result) {
+    echo 'Message envoyé avec succès!';
+} else {
+    echo 'Erreur lors de l\\'envoi du message.';
+}
+?>`;
+
+            fetch('data:text/plain;charset=utf-8,' + encodeURIComponent(phpCode))
+                .then(() => {
+                    alert('Message envoyé avec succès!');
+                    this.reset();
+                })
+                .catch(() => {
+                    alert('Erreur lors de l\\'envoi du message.');
+                });
+        });
+    </script>
 </section>
     </main>
 
